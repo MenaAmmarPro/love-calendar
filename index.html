@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b20">
+  <meta name="description" content="Our Days — a shared calendar with hearts, countdowns and milestones.">
+  <title>Our Days ✦ Love for Mena</title>
+  <link rel="canonical" href="https://menaammarpro.github.io/love-calendar/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Our Days — for Mena">
+  <meta property="og:title" content="Our Days ✦ Love for Mena">
+  <meta property="og:description" content="A shared calendar with hearts, countdowns and milestones.">
+  <meta property="og:url" content="https://menaammarpro.github.io/love-calendar/">
+  <meta property="og:image" content="https://menaammarpro.github.io/love-calendar/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Our Days — hearts, countdowns and milestones">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our Days ✦ Love for Mena">
+  <meta name="twitter:description" content="A shared calendar with hearts, countdowns and milestones.">
+  <meta name="twitter:image" content="https://menaammarpro.github.io/love-calendar/assets/og-image.png">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/theme-main.js" defer></script>
+  <script src="js/effects.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Our Days">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">♥ Our Days</a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="index.html">Home</a>
+      <a href="#today">Today</a>
+      <a href="#month">Calendar</a>
+      <a href="#upcoming">Upcoming</a>
+      <a href="#details">Details</a>
+      <a href="https://menaammarpro.github.io/loveformymena/">Our little universe ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">Theme</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero cal-hero">
+      <p class="eyebrow">EVERY DAY HAS OUR NAME ON IT</p>
+      <div class="moon" aria-hidden="true">♥</div>
+      <p class="small-caption">Countdowns, hearts, and the days worth keeping.</p>
+      <h1>Our <span>days.</span></h1>
+      <p class="hero-description">
+        A calendar for two: mark the days that belong to us, count down to the
+        next one, and watch the year fill up with little hearts. Everything is
+        saved on this device.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#month">Open the calendar <span>♥</span></a>
+        <a class="button button-ghost" href="#upcoming">See what's next</a>
+      </div>
+      <p class="signature">Made with love, just for you <span>♥</span></p>
+    </section>
+
+    <section class="section" id="today">
+      <p class="eyebrow">RIGHT NOW</p>
+      <h2>Today.</h2>
+      <div class="today-grid">
+        <div class="today-card">
+          <p class="today-label">Today is</p>
+          <p class="today-value" id="t-date">—</p>
+          <p class="today-sub" id="t-dow"></p>
+        </div>
+        <div class="today-card">
+          <p class="today-label">Days together</p>
+          <p class="today-value accent" id="t-days">0</p>
+          <p class="today-sub">since forever, and counting</p>
+        </div>
+        <div class="today-card">
+          <p class="today-label">Next up</p>
+          <p class="today-value" id="t-next-title">Nothing planned</p>
+          <p class="today-sub" id="t-next-days">add something below ♥</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="month">
+      <p class="eyebrow">THE MONTH</p>
+      <h2>Calendar.</h2>
+
+      <div class="month-nav">
+        <button class="button button-ghost" id="m-prev" type="button">← prev</button>
+        <span class="month-title" id="m-title">—</span>
+        <button class="button button-ghost" id="m-next" type="button">next →</button>
+        <button class="button button-ghost" id="m-today" type="button">today</button>
+      </div>
+
+      <div class="month-wrap">
+        <div class="month-box">
+          <div class="dow-row" aria-hidden="true">
+            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+          </div>
+          <div class="month-grid" id="m-grid" role="grid" aria-label="Month days"></div>
+        </div>
+
+        <div class="day-panel" id="day-panel">
+          <div class="day-head">
+            <span class="day-title" id="d-title">Pick a day</span>
+            <button class="heart-toggle" id="d-heart" type="button" aria-pressed="false" title="Mark as our day">♡</button>
+          </div>
+          <div class="day-events" id="d-events">
+            <p class="day-empty">Select a day in the grid to see its plans.</p>
+          </div>
+
+          <form class="event-form" id="ev-form" autocomplete="off">
+            <p class="form-label">Add something</p>
+            <label class="field">
+              <span>What is it?</span>
+              <input type="text" id="ev-title" maxlength="80" placeholder="Airport run ♥" aria-label="Event title">
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Date</span>
+                <input type="date" id="ev-date" aria-label="Event date">
+              </label>
+              <label class="field">
+                <span>Type</span>
+                <select id="ev-category" aria-label="Event type">
+                  <option value="date">date ♥</option>
+                  <option value="trip">trip ✈</option>
+                  <option value="gift">gift ✦</option>
+                  <option value="reminder">reminder •</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Note (optional)</span>
+              <input type="text" id="ev-note" maxlength="140" placeholder="bring the good camera" aria-label="Event note">
+            </label>
+            <button class="button button-primary" id="ev-add" type="submit">Add to the calendar <span>♥</span></button>
+          </form>
+        </div>
+      </div>
+      <p class="section-note" id="save-note" aria-live="polite"></p>
+    </section>
+
+    <section class="section" id="upcoming">
+      <p class="eyebrow">WHAT'S COMING</p>
+      <h2>Upcoming.</h2>
+      <div class="upcoming-list" id="upcoming-list"></div>
+    </section>
+
+    <section class="section" id="year">
+      <p class="eyebrow">THE WHOLE YEAR AT A GLANCE</p>
+      <h2>Year of <span>hearts.</span></h2>
+      <div class="year-box" id="year-box">
+        <div class="year-grid" id="year-grid"></div>
+        <p class="year-legend">
+          <span class="lg lg-heart">our day</span>
+          <span class="lg lg-event">has plans</span>
+          <span class="lg lg-today">today</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="details">
+      <p class="eyebrow">JUST FOR US</p>
+      <h2>Details.</h2>
+      <div class="settings-actions">
+        <button class="button button-ghost" id="ics-export" type="button">Export to calendar (.ics)</button>
+        <button class="button button-ghost" id="json-export" type="button">Back up (JSON)</button>
+        <label class="button button-ghost file-label">Restore backup
+          <input type="file" id="json-import" accept="application/json,.json" hidden>
+        </label>
+        <button class="button button-ghost" id="share-button" type="button">Share this page</button>
+        <button class="button button-ghost" id="clear-all" type="button">Clear everything</button>
+      </div>
+      <p class="settings-note">Saved on this device only — no tracking, no network calls.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with care <span>♥</span> for Mena</p>
+    <p class="footer-small">A little universe of its own ✦</p>
+  </footer>
+</body>
+</html>
