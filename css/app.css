@@ -1,0 +1,450 @@
+/* love-calendar — page styles (built on css/theme.css) */
+
+.cal-hero {
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.small-caption {
+  max-width: 44ch;
+  margin: 0.35rem auto 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- today cards ---------- */
+
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.today-card {
+  padding: 1.3rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.today-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.today-value {
+  margin: 0.4rem 0 0.2rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.today-value.accent {
+  color: var(--pink);
+}
+
+.today-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ---------- month nav + grid ---------- */
+
+.month-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+}
+
+.month-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  min-width: 10ch;
+  text-align: center;
+}
+
+.month-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 1.2rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .month-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.month-box {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.dow-row,
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35rem;
+}
+
+.dow-row {
+  margin-bottom: 0.45rem;
+}
+
+.dow-row span {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.day-cell {
+  position: relative;
+  min-height: 58px;
+  padding: 0.35rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.day-cell:hover {
+  border-color: var(--line);
+}
+
+.day-cell.is-blank {
+  visibility: hidden;
+  cursor: default;
+}
+
+.day-cell.is-today {
+  border-color: var(--purple);
+  background: rgba(185, 139, 255, 0.12);
+}
+
+.day-cell.is-selected {
+  border-color: var(--pink-strong);
+  background: rgba(255, 159, 207, 0.14);
+}
+
+.day-cell .heart-mark {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  color: var(--pink);
+  font-size: 0.7rem;
+}
+
+.day-cell .dot-row {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.ev-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.ev-dot.cat-date { background: var(--pink); }
+.ev-dot.cat-trip { background: var(--purple); }
+.ev-dot.cat-gift { background: #ffd166; }
+.ev-dot.cat-reminder { background: #7ec8ff; }
+
+/* ---------- day panel ---------- */
+
+.day-panel {
+  padding: 1.1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(255, 159, 207, 0.1), rgba(255, 255, 255, 0.02));
+}
+
+.day-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.day-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.heart-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--pink);
+  font-size: 1rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+
+.heart-toggle[aria-pressed="true"] {
+  background: rgba(255, 159, 207, 0.25);
+  border-color: var(--pink-strong);
+}
+
+.day-events {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.day-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.event-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.chip {
+  flex: none;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  text-transform: capitalize;
+}
+
+.chip.cat-date { background: rgba(255, 159, 207, 0.25); color: var(--pink); }
+.chip.cat-trip { background: rgba(185, 139, 255, 0.25); color: var(--purple); }
+.chip.cat-gift { background: rgba(255, 209, 102, 0.22); color: #ffd166; }
+.chip.cat-reminder { background: rgba(126, 200, 255, 0.2); color: #7ec8ff; }
+
+.event-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.event-note {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.event-remove {
+  flex: none;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ---------- event form ---------- */
+
+.event-form {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--line);
+}
+
+.form-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.field {
+  display: block;
+}
+
+.field > span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.field select option {
+  background: #141633;
+  color: var(--text);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+/* ---------- upcoming ---------- */
+
+.upcoming-list {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.upcoming-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.upcoming-date {
+  flex: none;
+  min-width: 8.5ch;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.upcoming-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.95rem;
+}
+
+.upcoming-count {
+  flex: none;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 159, 207, 0.18);
+  color: var(--pink);
+  font-size: 0.78rem;
+}
+
+.upcoming-count.is-today {
+  background: rgba(185, 139, 255, 0.25);
+  color: var(--purple);
+}
+
+.upcoming-empty {
+  padding: 1.6rem 1rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- year heatmap ---------- */
+
+.year-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  overflow-x: auto;
+}
+
+.year-grid {
+  display: grid;
+  grid-template-columns: 3rem repeat(31, minmax(12px, 1fr));
+  gap: 3px;
+  min-width: 560px;
+  align-items: center;
+}
+
+.year-label {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.year-head {
+  color: var(--muted);
+  font-size: 0.58rem;
+  text-align: center;
+}
+
+.y-cell {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.y-cell.has-event { background: rgba(255, 159, 207, 0.45); }
+.y-cell.has-heart { background: var(--pink-strong); }
+.y-cell.is-today { outline: 1.5px solid var(--purple); }
+.y-cell.is-pad { background: transparent; }
+
+.year-legend {
+  display: flex;
+  gap: 1rem;
+  margin: 0.8rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.lg::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  margin-right: 0.35rem;
+  vertical-align: -1px;
+}
+
+.lg-heart::before { background: var(--pink-strong); }
+.lg-event::before { background: rgba(255, 159, 207, 0.45); }
+.lg-today::before { background: transparent; outline: 1.5px solid var(--purple); }
+
+/* ---------- settings ---------- */
+
+.file-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
